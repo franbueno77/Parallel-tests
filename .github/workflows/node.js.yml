@@ -55,8 +55,8 @@ jobs:
         #  start: npx serve -s -l 8080 dist
           browser: chrome
           headless: true
-          spec: cypress/integration/1-getting-started/todo*
-          spec: cypress/integration/2-advanced-examples/todo*
+          spec: cypress/integration/1-getting-started/todo* &&  cypress/integration/2-advanced-examples/*
+          spec:
 
         #  wait-on: 'http://localhost:8080'
           command-prefix: 'percy exec -- '
