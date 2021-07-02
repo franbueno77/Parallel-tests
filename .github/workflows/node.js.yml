@@ -46,7 +46,7 @@ jobs:
      # - name: Add the version code
       #  run: echo "VUE_APP_VERSION=${GITHUB_SHA}" >> frontend/.env
 
-      - name: Generate the app
+     # - name: Generate the app
       #  run: cd frontend && yarn && yarn build
 
       - uses: cypress-io/github-action@v2
