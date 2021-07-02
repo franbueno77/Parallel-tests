@@ -51,7 +51,7 @@ jobs:
 
       - uses: cypress-io/github-action@v2
         with:
-          working-directory: frontend
+          working-directory: ./
           start: npx serve -s -l 8080 dist
           browser: chrome
           headless: true
