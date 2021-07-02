@@ -52,11 +52,11 @@ jobs:
       - uses: cypress-io/github-action@v2
         with:
           working-directory: ./
-          start: npx serve -s -l 8080 dist
+        #  start: npx serve -s -l 8080 dist
           browser: chrome
           headless: true
           spec: cypress/integration/*
-          wait-on: 'http://localhost:8080'
+        #  wait-on: 'http://localhost:8080'
           command-prefix: 'percy exec -- '
         env:
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
