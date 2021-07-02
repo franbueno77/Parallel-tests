@@ -42,9 +42,11 @@ jobs:
           KNAPSACK_PRO_CI_NODE_INDEX: ${{ matrix.ci_node_index }}
         run: |
           $(npm bin)/knapsack-pro-cypress
-      - uses: cypress-io/github-action@v2
+
+      - name: Cypress    
+        uses: cypress-io/github-action@v2
               with:
-                working-directory: frontend
+                working-directory: ./
                 start: npx serve -s -l 8080 dist
                 browser: chrome
                 headless: true
