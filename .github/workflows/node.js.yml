@@ -70,4 +70,4 @@ jobs:
         with:
           name: Failed Screenshots
           path: ./frontend/cypress/screenshots
-          parallel: true
+          
