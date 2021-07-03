@@ -58,7 +58,7 @@ jobs:
           browser: chrome
           headless: true
           spec: ${{ matrix.url }}
-
+          parallel: true
         #  wait-on: 'http://localhost:8080'
           command-prefix: 'percy exec -- '
         env:
