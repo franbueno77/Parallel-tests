@@ -59,7 +59,7 @@ jobs:
           name: Failed Screenshots
           path: ./frontend/cypress/screenshots
           parallel: true
-  build:
+  build-second-tests:
     runs-on: ubuntu-latest
     timeout-minutes: 20
   
