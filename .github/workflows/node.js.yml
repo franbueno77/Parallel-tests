@@ -60,7 +60,6 @@ jobs:
 
         #  wait-on: 'http://localhost:8080'
           command-prefix: 'percy exec -- '
-          command: cypress run --record --key=abc123 --parallel
         env:
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
 
