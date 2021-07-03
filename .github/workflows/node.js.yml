@@ -13,7 +13,7 @@ jobs:
       fail-fast: false
       matrix:
       #  machines: [1, 2]
-        url: ['cypress/integration/1_*/*', 'cypress/integration/2_*/*', 'cypress/integration/3_*/*', 'cypress/integration/4_*/*']
+        url: ['cypress/integration/1_*/*', 'cypress/integration/2_*/*', 'cypress/integration/3_*/*', 'cypress/integration/4_*/*', 'cypress/integration/5_*/*', 'cypress/integration/6_*/*', 'cypress/integration/7_*/*', 'cypress/integration/8_*/*']
     #    node-version: [8.x]
         # Set N number of parallel jobs you want to run tests on.
         # Use higher number if you have slow tests to split them on more parallel jobs.
