@@ -9,11 +9,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 20
-    strategy:
-      fail-fast: false
-      matrix:
+  #  strategy:
+    #  fail-fast: false
+     # matrix:
       #  machines: [1, 2]
-        url: ['cypress/integration/2-advanced-examples/1_*', 'cypress/integration/2-advanced-examples/2_*']
+      #  url: ['cypress/integration/2-advanced-examples/1_*', 'cypress/integration/2-advanced-examples/2_*']
         node-version: [8.x]
         # Set N number of parallel jobs you want to run tests on.
         # Use higher number if you have slow tests to split them on more parallel jobs.
@@ -21,7 +21,7 @@ jobs:
     #    ci_node_total: [8]
         # set N-1 indexes for parallel jobs
         # When you run 2 parallel jobs then first job will have index 0, the second job will have index 1 etc
-        ci_node_index: [0, 1, 2, 3, 4, 5 , 6, 7]
+       # ci_node_index: [0, 1, 2, 3, 4, 5 , 6, 7]
     steps:
       - uses: actions/checkout@v2
 
@@ -57,7 +57,8 @@ jobs:
         #  start: npx serve -s -l 8080 dist
           browser: chrome
           headless: true
-          spec: ${{ matrix.url }}
+         # spec: ${{ matrix.url }}
+          spec: 'cypress/integration/*'
          
         #  wait-on: 'http://localhost:8080'
           command-prefix: 'percy exec -- '
