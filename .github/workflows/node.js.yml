@@ -9,6 +9,61 @@ jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 20
+   
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Node.js for use with actions
+        uses: actions/setup-node@v2
+        with:
+          version: '14'
+
+      - uses: actions/cache@v2
+        id: cache
+        with:
+          path: "node_modules"
+          key: ${{ runner.os }}-v15-${{ hashFiles('frontend/yarn.lock') }}
+
+      - name: Install chrome
+        uses: browser-actions/setup-chrome@latest
+
+      - name: Check installed chrome version
+        run: chrome --version
+
+      - name: Install yarn
+        run: npm install -g yarn
+
+     # - name: Add the version code
+      #  run: echo "VUE_APP_VERSION=${GITHUB_SHA}" >> frontend/.env
+
+     # - name: Generate the app
+      #  run: cd frontend && yarn && yarn build
+
+      - uses: cypress-io/github-action@v2
+        with:
+          node: [2]
+          working-directory: ./
+        #  start: npx serve -s -l 8080 dist
+          browser: chrome
+          headless: true
+          spec: cypress/integration/2-advanced-examples/1_*
+
+        #  wait-on: 'http://localhost:8080'
+          command-prefix: 'percy exec -- '
+        env:
+          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
+
+      - name: Upload failed screenshots
+        uses: actions/upload-artifact@master
+        if: failure()
+        with:
+          name: Failed Screenshots
+          path: ./frontend/cypress/screenshots
+          parallel: true
+
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
     strategy:
       fail-fast: false
       matrix:
@@ -57,7 +112,7 @@ jobs:
         #  start: npx serve -s -l 8080 dist
           browser: chrome
           headless: true
-          spec: cypress/integration/2-advanced-examples/*
+          spec: cypress/integration/2-advanced-examples/2_*
 
         #  wait-on: 'http://localhost:8080'
           command-prefix: 'percy exec -- '
@@ -70,13 +125,4 @@ jobs:
         with:
           name: Failed Screenshots
           path: ./frontend/cypress/screenshots
-          parallel: true
-      - name: Run tests
-        env:
-          KNAPSACK_PRO_TEST_SUITE_TOKEN_MINITEST: ${{ secrets.KNAPSACK_PRO_TEST_SUITE_TOKEN_MINITEST }}
-          KNAPSACK_PRO_CI_NODE_TOTAL: ${{ matrix.ci_node_total }}
-          KNAPSACK_PRO_CI_NODE_INDEX: ${{ matrix.ci_node_index }}
-          KNAPSACK_PRO_FIXED_QUEUE_SPLIT: true
-          KNAPSACK_PRO_LOG_LEVEL: info
-        run: |
-          bundle exec rake knapsack_pro:queue:minitest
+          parallel: true          
