@@ -57,7 +57,7 @@ jobs:
         #  start: npx serve -s -l 8080 dist
           browser: chrome
           headless: true
-          spec: cypress/integration/2-advanced-examples/*
+          spec: ${{ matrix.url }}
 
         #  wait-on: 'http://localhost:8080'
           command-prefix: 'percy exec -- '
