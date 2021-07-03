@@ -52,6 +52,7 @@ jobs:
 
       - uses: cypress-io/github-action@v2
         with:
+          node: [2]
           working-directory: ./
         #  start: npx serve -s -l 8080 dist
           browser: chrome
@@ -70,3 +71,12 @@ jobs:
           name: Failed Screenshots
           path: ./frontend/cypress/screenshots
           parallel: true
+      - name: Run tests
+        env:
+          KNAPSACK_PRO_TEST_SUITE_TOKEN_MINITEST: ${{ secrets.KNAPSACK_PRO_TEST_SUITE_TOKEN_MINITEST }}
+          KNAPSACK_PRO_CI_NODE_TOTAL: ${{ matrix.ci_node_total }}
+          KNAPSACK_PRO_CI_NODE_INDEX: ${{ matrix.ci_node_index }}
+          KNAPSACK_PRO_FIXED_QUEUE_SPLIT: true
+          KNAPSACK_PRO_LOG_LEVEL: info
+        run: |
+          bundle exec rake knapsack_pro:queue:minitest
