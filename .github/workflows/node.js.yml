@@ -12,7 +12,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        machines: [1, 2]
+      #  machines: [1, 2]
         url: ['cypress/integration/2-advanced-examples/1_*', 'cypress/integration/2-advanced-examples/2_*']
     #    node-version: [8.x]
         # Set N number of parallel jobs you want to run tests on.
