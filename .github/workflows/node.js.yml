@@ -58,7 +58,7 @@ jobs:
           browser: chrome
           headless: true
          # spec: ${{ matrix.url }}
-          spec: 'cypress/integration/*'
+          spec: 'cypress/integration/all_tests/*'
          
         #  wait-on: 'http://localhost:8080'
           command-prefix: 'percy exec -- '
