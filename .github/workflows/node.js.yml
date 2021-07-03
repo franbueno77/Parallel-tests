@@ -60,7 +60,7 @@ jobs:
           spec: ${{ matrix.url }}
           parallel: true
           group: 'Actions example'
-          record: true
+       
         #  wait-on: 'http://localhost:8080'
           command-prefix: 'percy exec -- '
         env:
